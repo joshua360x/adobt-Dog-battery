@@ -15,13 +15,18 @@ export async function getDogs() {
 // eslint-disable-next-line no-unused-vars
 export async function getDog(id) {
     // from the dogs table, select a single dog who has the matching id
-
+    const response = await client
+        .from('dogs')
+        .select()
+        .match({ id })
+        .single();
     // and return the response (checking for errors)
-    // eslint-disable-next-line no-undef
-    return checkError(response);    
+
+    return checkError(response);
 }
 
 function checkError({ data, error }) {
+
     // eslint-disable-next-line no-console
     return error ? console.error(error) : data;
 
