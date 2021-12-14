@@ -7,7 +7,8 @@ export async function getDogs() {
     // from the dogs table, select all items
     const response = await client
         .from('dogs')
-        .select();
+        .select()
+        .order('id');
     // and return the response (checking for errors)
     return checkError(response);    
 }
@@ -24,6 +25,19 @@ export async function getDog(id) {
 
     return checkError(response);
 }
+// export async function postGetDog() {
+//     // from the dogs table, select a single dog who has the matching id
+//     const response = await client
+//      select()
+//       from(
+//       '{ "title": "foo", "body": "bar", "userId": 1 }',
+//       'application/json'
+//     );
+//     // and return the response (checking for errors)
+
+//     return checkError(response);
+//     console.log("🚀 ~ file: fetch-utils.js ~ line 41 ~ postGetDog ~ response", response)
+// }
 
 function checkError({ data, error }) {
 
@@ -31,3 +45,5 @@ function checkError({ data, error }) {
     return error ? console.error(error) : data;
 
 }
+
+
